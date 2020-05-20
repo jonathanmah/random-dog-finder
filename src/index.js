@@ -1,17 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+  
+class App extends React.Component {
+  render(){
+    return (
+      <DogImage />
+    );
+  };
+}
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class DogImage extends React.Component {
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  constructor(props) {
+    super(props);
+    this.state = {
+      url: "",
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(){
+    fetch("https://random.dog/woof.json")
+    .then(response => response.json())
+    .then(data => {
+        this.setState({url: data.url});
+      });
+  }
+  render(){
+    return (
+    <div>
+      <div>
+      <button onclick={this.handleClick()}>Click me</button>
+      </div>
+      <div>
+        <img src = {this.state.url} alt = "new" />
+      </div>
+    </div> 
+    )
+  }
+}
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
+  
