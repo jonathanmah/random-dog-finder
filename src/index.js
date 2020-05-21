@@ -42,7 +42,7 @@ class DogImage extends React.Component {
       buttonColor: "primary",
       start: true,
       headerStyle: {
-        transform: 'translate(700px, 100px)',
+        transform: 'translate(725px, 50px)',
         color: 'black',
       }
     }
