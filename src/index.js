@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Image from 'react-image-resizer';
+import './index.css';
 
 class App extends React.Component {
   render(){
@@ -40,6 +40,7 @@ class DogImage extends React.Component {
     this.state = {
       url: "",
       buttonColor: "primary",
+      start: true,
       headerStyle: {
         transform: 'translate(35%, 80%)',
         color: 'black',
@@ -57,6 +58,7 @@ class DogImage extends React.Component {
         this.setState({
           url: data.url,
           buttonColor: this.variantArr[Math.floor(Math.random() * this.variantArr.length)],
+          start: false,
           headerStyle : {
             transform: 'translate(35%, 80%)',
             color : this.colorArr[Math.floor(Math.random() * this.colorArr.length)]
@@ -66,6 +68,10 @@ class DogImage extends React.Component {
           this.handleClick();
         }
       });
+  }
+
+  renderImage(){
+    return <img className = "photo" src = {this.state.url} onError = {this.handleClick} />
   }
   render(){
     let color = this.headerColor;
@@ -77,7 +83,7 @@ class DogImage extends React.Component {
           }>
           Random Dog Generator</h1>
       </div>
-      <div style = {
+      <div style = { //800
         {transform: 'translate(800px, 800px)'}
       }>
       <Button  size = "lg" variant={this.state.buttonColor} onClick= {this.handleClick}> FIND RANDOM DOG </Button>{' '}
@@ -87,7 +93,7 @@ class DogImage extends React.Component {
           transform: 'translate(525px,30px)'
         }
       }>
-        <Image src = {this.state.url} alt = "missing dog" height ={700} width = {700} />
+        {!this.state.start && this.renderImage()}
       </div>
     </div> 
     )
