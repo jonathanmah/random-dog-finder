@@ -81,7 +81,7 @@ class DogImage extends React.Component {
         <h1 style = {
           this.state.headerStyle
           }>
-          Random Dog Generator</h1>
+          Random Dog Finder</h1>
       </div>
       <div style = { //800
         {transform: 'translate(800px, 800px)'}
@@ -90,7 +90,7 @@ class DogImage extends React.Component {
       </div>
       <div style = {
         {
-          transform: 'translate(525px,30px)'
+          transform: 'translate(550px,30px)'
         }
       }>
         {!this.state.start && this.renderImage()}
