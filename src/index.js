@@ -42,7 +42,7 @@ class DogImage extends React.Component {
       buttonColor: "primary",
       start: true,
       headerStyle: {
-        transform: 'translate(35%, 80%)',
+        transform: 'translate(700px, 100px)',
         color: 'black',
       }
     }
@@ -60,7 +60,7 @@ class DogImage extends React.Component {
           buttonColor: this.variantArr[Math.floor(Math.random() * this.variantArr.length)],
           start: false,
           headerStyle : {
-            transform: 'translate(35%, 80%)',
+            transform: 'translate(725px, 50px)',
             color : this.colorArr[Math.floor(Math.random() * this.colorArr.length)]
           },
         });
