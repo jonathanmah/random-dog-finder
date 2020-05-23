@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
@@ -38,12 +39,15 @@ class DogImage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       url: "",
       buttonColor: "primary",
       start: true,
       headerStyle: {
-        transform: 'translate(725px, 50px)',
+        textAlign: 'center',
         color: 'black',
+        marginTop: '30px',
+        marginBottom: '60px'
       }
     }
 
@@ -56,12 +60,15 @@ class DogImage extends React.Component {
     .then(response => response.json())
     .then(data => {
         this.setState({
+          loading: true,
           url: data.url,
           buttonColor: this.variantArr[Math.floor(Math.random() * this.variantArr.length)],
           start: false,
           headerStyle : {
-            transform: 'translate(725px, 50px)',
-            color : this.colorArr[Math.floor(Math.random() * this.colorArr.length)]
+            textAlign: 'center',
+            color : this.colorArr[Math.floor(Math.random() * this.colorArr.length)],
+            marginTop: '30px',
+            marginBottom: '60px'
           },
         });
         if(! (<img src = {this.state.url}/>)){
@@ -70,30 +77,41 @@ class DogImage extends React.Component {
       });
   }
 
-  renderImage(){
-    return <img className = "photo" src = {this.state.url} onError = {this.handleClick} />
+  setLoadingFalse = () => {
+    this.setState({
+        loading: false,
+        url: this.state.url,
+        buttonColor: this.state.buttonColor,
+        start: this.state.start,
+        headerStyle : this.state.headerStyle
+    });
   }
+
+  renderImage(){
+    let img = <img className = "photo" src = {this.state.url} onLoad = {this.setLoadingFalse} onError = {this.handleClick} />
+    return this.state.loading ? <Spinner animation = "border"/> : img;
+  }
+
   render(){
     let color = this.headerColor;
     return (
     <div>
       <div>
-        <h1 style = {
-          this.state.headerStyle
-          }>
-          Random Dog Finder</h1>
+        <h1 style = {this.state.headerStyle}>Random Dog Finder</h1>
       </div>
-      <div style = { //800
-        {transform: 'translate(800px, 800px)'}
-      }>
-      <Button  size = "lg" variant={this.state.buttonColor} onClick= {this.handleClick}> FIND RANDOM DOG </Button>{' '}
-      </div>
-      <div style = {
-        {
-          transform: 'translate(550px,30px)'
-        }
-      }>
+      <div>
         {!this.state.start && this.renderImage()}
+      </div>
+      <div style = { 
+        {
+        position: 'absolute',
+        bottom: '30px',
+        textAlign: 'center',
+        width: '100%'
+        }
+        }
+      >
+        <Button  size = "lg" variant={this.state.buttonColor} onClick= {this.handleClick}> FIND RANDOM DOG </Button>{' '}
       </div>
     </div> 
     )

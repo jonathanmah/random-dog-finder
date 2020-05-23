@@ -1,4 +1,10 @@
 .photo {
-    height: 700px;
-    width: 700px;
+    max-height: 70vh;
+    max-width: 70vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
+.center {
+  text-align: center;
+}
