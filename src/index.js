@@ -89,7 +89,11 @@ class DogImage extends React.Component {
 
   renderImage(){
     let img = <img className = "photo" src = {this.state.url} onLoad = {this.setLoadingFalse} onError = {this.handleClick} />
-    return this.state.loading ? <Spinner animation = "border"/> : img;
+    return this.state.loading ? 
+    <div  className = "spinner">
+      <Spinner animation = "border"/>
+    </div>
+      : img;
   }
 
   render(){

@@ -5,6 +5,10 @@
     margin-left: auto;
     margin-right: auto;
   }
-.center {
+.spinner {
+  margin-top: 15%;
+  text-align: center;
+}
+.button {
   text-align: center;
 }
