@@ -39,6 +39,7 @@ class DogImage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      fullyRendered: false,
       loading: false,
       url: "",
       buttonColor: "primary",
@@ -56,11 +57,12 @@ class DogImage extends React.Component {
   }
 
   handleClick = () => {
+    this.setState({loading:true});
     fetch("https://random.dog/woof.json")
     .then(response => response.json())
     .then(data => {
         this.setState({
-          loading: true,
+          loading: false,
           url: data.url,
           buttonColor: this.variantArr[Math.floor(Math.random() * this.variantArr.length)],
           start: false,
@@ -71,53 +73,47 @@ class DogImage extends React.Component {
             marginBottom: '60px'
           },
         });
-        if(! (<img src = {this.state.url}/>)){
-          this.handleClick();
-        }
       });
   }
 
   setLoadingFalse = () => {
     this.setState({
         loading: false,
-        url: this.state.url,
-        buttonColor: this.state.buttonColor,
-        start: this.state.start,
-        headerStyle : this.state.headerStyle
     });
   }
 
   renderImage(){
-    let img = <img className = "photo" src = {this.state.url} onLoad = {this.setLoadingFalse} onError = {this.handleClick} />
-    return this.state.loading ? 
-    <div  className = "spinner">
+    const {url, loading} = this.state;
+    return loading ? 
+    <div className = "spinner">
       <Spinner animation = "border"/>
     </div>
-      : img;
+    : <img style={this.state.fullyRendered ? {} : {display: 'none'}} className = "photo" src = {url} 
+      onLoad = {() => this.setState({fullyRendered: true})} onError = {this.handleClick}/>;  
   }
 
   render(){
     let color = this.headerColor;
+    const {headerStyle, start, buttonColor} = this.state;
     return (
     <div>
       <div>
-        <h1 style = {this.state.headerStyle}>Random Dog Finder</h1>
+        <h1 style={headerStyle}>Random Dog Finder</h1>
       </div>
       <div>
-        {!this.state.start && this.renderImage()}
+        {!start && this.renderImage()}
       </div>
-      <div style = { 
+      <div style={ 
         {
         position: 'absolute',
         bottom: '30px',
         textAlign: 'center',
         width: '100%'
         }
-        }
-      >
-        <Button  size = "lg" variant={this.state.buttonColor} onClick= {this.handleClick}> FIND RANDOM DOG </Button>{' '}
+        }>
+        <Button  size = "lg" variant={buttonColor} onClick= {this.handleClick}> FIND RANDOM DOG </Button>{' '}
       </div>
-    </div> 
+    </div>
     )
   }
 }
