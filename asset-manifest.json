@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/random-dog-finder/static/css/main.7293dad5.chunk.css",
+    "main.js": "/random-dog-finder/static/js/main.ad7b6763.chunk.js",
+    "main.js.map": "/random-dog-finder/static/js/main.ad7b6763.chunk.js.map",
+    "runtime-main.js": "/random-dog-finder/static/js/runtime-main.65b99891.js",
+    "runtime-main.js.map": "/random-dog-finder/static/js/runtime-main.65b99891.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/random-dog-finder/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.387e3d94.chunk.js": "/random-dog-finder/static/js/2.387e3d94.chunk.js",
+    "static/js/2.387e3d94.chunk.js.map": "/random-dog-finder/static/js/2.387e3d94.chunk.js.map",
+    "index.html": "/random-dog-finder/index.html",
+    "precache-manifest.91c543db577423b3b31dff555dabc410.js": "/random-dog-finder/precache-manifest.91c543db577423b3b31dff555dabc410.js",
+    "service-worker.js": "/random-dog-finder/service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "/random-dog-finder/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.7293dad5.chunk.css.map": "/random-dog-finder/static/css/main.7293dad5.chunk.css.map",
+    "static/js/2.387e3d94.chunk.js.LICENSE.txt": "/random-dog-finder/static/js/2.387e3d94.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.65b99891.js",
+    "static/css/2.af3c1da9.chunk.css",
+    "static/js/2.387e3d94.chunk.js",
+    "static/css/main.7293dad5.chunk.css",
+    "static/js/main.ad7b6763.chunk.js"
+  ]
+}
